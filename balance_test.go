@@ -13,7 +13,7 @@ func TestBalance(t *testing.T) {
 		HledgerBinary: "hledger",
 	}
 
-	opts := NewOptions().WithAccount("dbs")
+	opts := NewOptions().WithAccount("dbs").WithAccountDepth(1)
 	rd, err := hl.Balance(opts)
 	assert.NoError(t, err)
 	b, _ := io.ReadAll(rd)
