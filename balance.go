@@ -5,8 +5,10 @@ import (
 	"io"
 )
 
-func (h Hledger) Balance( /*filters ...Filter*/ ) (io.Reader, error) {
-	rd, err := h.execWithoutCSV([]string{"balance"}) //, filters...)
+func (h Hledger) Balance(options Options) (io.Reader, error) {
+	args := []string{"balance"}
+	args = append(args, options.Build()...)
+	rd, err := h.execWithoutCSV(args)
 	if err != nil {
 		data, _ := io.ReadAll(rd)
 		return nil, fmt.Errorf(string(data))
