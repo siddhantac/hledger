@@ -8,6 +8,7 @@ type Options struct {
 	accountDrop  int
 	startDate    string
 	endDate      string
+	outputCSV    bool
 }
 
 func NewOptions() Options { return Options{} }
@@ -37,6 +38,11 @@ func (o Options) WithEndDate(endDate string) Options {
 	return o
 }
 
+func (o Options) WithOutputCSV() Options {
+	o.outputCSV = true
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -54,6 +60,10 @@ func (o Options) Build() []string {
 	if o.startDate != "" || o.endDate != "" {
 		date := fmt.Sprintf("%s..%s", o.startDate, o.endDate)
 		options = append(options, "date:"+date)
+	}
+
+	if o.outputCSV {
+		options = append(options, "-O", "csv")
 	}
 	return options
 }

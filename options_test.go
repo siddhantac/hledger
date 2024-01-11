@@ -48,6 +48,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"date:2020-01-01..2020-02-01"},
 		},
+		"with output csv": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithOutputCSV()
+			},
+			expected: []string{"-O", "csv"},
+		},
 	}
 
 	for name, test := range tests {
