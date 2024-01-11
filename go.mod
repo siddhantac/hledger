@@ -1,4 +1,4 @@
-module github.com/siddhanta/chledgergo
+module github.com/siddhantac/hledger
 
 go 1.19
 
