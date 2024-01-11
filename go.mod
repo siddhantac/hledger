@@ -1,6 +1,4 @@
-module hledger-go
-
-replace github.com/siddhantac/hledger-go => /hlgo
+module hledgergo
 
 go 1.19
 
