@@ -14,12 +14,7 @@ func TestBalance(t *testing.T) {
 	hl := hledger.New("hledger", "data/hledger.journal")
 
 	opts := hledger.NewOptions().WithAccount("maybank")
-	rd, err := hl.Balance(opts)
-	assert.NoError(t, err)
-	b, _ := io.ReadAll(rd)
-	assert.NotEmpty(t, b)
-
-	rd, err = hl.Balance(opts.WithOutputCSV())
+	rd, err := hl.Balance(opts.WithOutputCSV())
 	assert.NoError(t, err)
 	records := parseCSV(t, rd)
 

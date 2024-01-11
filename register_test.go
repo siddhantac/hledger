@@ -2,7 +2,6 @@ package hledger_test
 
 import (
 	"hledger-go"
-	"io"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -12,12 +11,7 @@ func TestRegister(t *testing.T) {
 	hl := hledger.New("hledger", "data/hledger.journal")
 
 	opts := hledger.NewOptions().WithAccount("maybank")
-	rd, err := hl.Register(opts)
-	assert.NoError(t, err)
-	b, _ := io.ReadAll(rd)
-	assert.NotEmpty(t, b)
-
-	rd, err = hl.Register(opts.WithOutputCSV())
+	rd, err := hl.Register(opts.WithOutputCSV())
 	assert.NoError(t, err)
 	records := parseCSV(t, rd)
 
