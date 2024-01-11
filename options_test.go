@@ -1,9 +1,9 @@
 package hledger_test
 
 import (
-	"hledger-go"
 	"testing"
 
+	"github.com/siddhantac/hledger"
 	"github.com/stretchr/testify/assert"
 )
 

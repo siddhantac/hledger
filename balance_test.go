@@ -1,12 +1,9 @@
 package hledger_test
 
 import (
-	"encoding/csv"
-	"errors"
-	"hledger-go"
-	"io"
 	"testing"
 
+	"github.com/siddhantac/hledger"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -16,7 +13,8 @@ func TestBalance(t *testing.T) {
 	opts := hledger.NewOptions().WithAccount("maybank")
 	rd, err := hl.Balance(opts.WithOutputCSV())
 	assert.NoError(t, err)
-	records := parseCSV(t, rd)
+	records, err := hledger.ParseCSV(rd)
+	assert.NoError(t, err)
 
 	expected := [][]string{
 		{"account", "balance"},
@@ -24,21 +22,4 @@ func TestBalance(t *testing.T) {
 		{"total", "$-12300.00"},
 	}
 	assert.Equal(t, expected, records)
-}
-
-func parseCSV(t *testing.T, r io.Reader) [][]string {
-	t.Helper()
-	result := make([][]string, 0)
-	csvrdr := csv.NewReader(r)
-	for {
-		rec, err := csvrdr.Read()
-		if errors.Is(err, io.EOF) {
-			break
-		}
-		if err != nil {
-			t.Fatal(err)
-		}
-		result = append(result, rec)
-	}
-	return result
 }

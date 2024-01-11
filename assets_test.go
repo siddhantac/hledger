@@ -1,9 +1,9 @@
 package hledger_test
 
 import (
-	"hledger-go"
 	"testing"
 
+	"github.com/siddhantac/hledger"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -13,7 +13,8 @@ func TestAssets(t *testing.T) {
 	opts := hledger.NewOptions()
 	rd, err := hl.Assets(opts.WithOutputCSV())
 	assert.NoError(t, err)
-	records := parseCSV(t, rd)
+	records, err := hledger.ParseCSV(rd)
+	assert.NoError(t, err)
 
 	expected := [][]string{
 		{"account", "balance"},
