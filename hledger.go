@@ -1,6 +1,13 @@
 package hledger
 
 type Hledger struct {
-	JournalFilename string
-	HledgerBinary   string
+	journalFilename string
+	hledgerBinary   string
+}
+
+func New(hledgerBinary, journalFile string) Hledger {
+	return Hledger{
+		hledgerBinary:   hledgerBinary,
+		journalFilename: journalFile,
+	}
 }
