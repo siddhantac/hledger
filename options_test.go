@@ -64,7 +64,7 @@ func TestOptions(t *testing.T) {
 			opts: func() hledger.Options {
 				return hledger.NewOptions().WithLayout(hledger.LayoutBare)
 			},
-			expected: []string{"--layout=bare"},
+			expected: []string{"--layout", "bare"},
 		},
 	}
 
