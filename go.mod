@@ -1,4 +1,4 @@
-module hledgergo
+module github.com/siddhanta/chledgergo
 
 go 1.19
 
