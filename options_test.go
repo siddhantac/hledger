@@ -18,6 +18,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"acct:dbs"},
 		},
+		"with account type": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithAccountType("a") // a = assets
+			},
+			expected: []string{"type:a"},
+		},
 		"with account depth": {
 			opts: func() hledger.Options {
 				return hledger.NewOptions().WithAccountDepth(1)

@@ -4,6 +4,7 @@ import "fmt"
 
 type Options struct {
 	account      string
+	accountType  string
 	accountDepth int
 	accountDrop  int
 	startDate    string
@@ -15,6 +16,11 @@ func NewOptions() Options { return Options{} }
 
 func (o Options) WithAccount(account string) Options {
 	o.account = account
+	return o
+}
+
+func (o Options) WithAccountType(accountType string) Options {
+	o.accountType = accountType
 	return o
 }
 
@@ -47,6 +53,10 @@ func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
 		options = append(options, "acct:"+o.account)
+	}
+
+	if o.accountType != "" {
+		options = append(options, "type:"+o.accountType)
 	}
 
 	if o.accountDepth > 0 {
