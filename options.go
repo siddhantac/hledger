@@ -10,7 +10,14 @@ type Options struct {
 	startDate    string
 	endDate      string
 	outputCSV    bool
+	layout       LayoutType
 }
+
+type LayoutType string
+
+const (
+	LayoutBare LayoutType = "bare"
+)
 
 func NewOptions() Options { return Options{} }
 
@@ -49,6 +56,11 @@ func (o Options) WithOutputCSV() Options {
 	return o
 }
 
+func (o Options) WithLayout(layout LayoutType) Options {
+	o.layout = layout
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -70,6 +82,10 @@ func (o Options) Build() []string {
 	if o.startDate != "" || o.endDate != "" {
 		date := fmt.Sprintf("%s..%s", o.startDate, o.endDate)
 		options = append(options, "date:"+date)
+	}
+
+	if o.layout != "" {
+		options = append(options, fmt.Sprintf("--layout=%s", o.layout))
 	}
 
 	if o.outputCSV {

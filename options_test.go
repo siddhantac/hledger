@@ -60,6 +60,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"-O", "csv"},
 		},
+		"with layout": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithLayout(hledger.LayoutBare)
+			},
+			expected: []string{"--layout=bare"},
+		},
 	}
 
 	for name, test := range tests {
