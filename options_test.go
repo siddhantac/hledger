@@ -72,6 +72,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"--sort-amount"},
 		},
+		"with invert amount": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithInvertAmount()
+			},
+			expected: []string{"--invert"},
+		},
 	}
 
 	for name, test := range tests {
