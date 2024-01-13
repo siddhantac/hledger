@@ -85,7 +85,7 @@ func (o Options) Build() []string {
 	}
 
 	if o.layout != "" {
-		options = append(options, fmt.Sprintf("--layout=%s", o.layout))
+		options = append(options, "--layout", string(o.layout))
 	}
 
 	if o.outputCSV {
