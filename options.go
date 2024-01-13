@@ -11,6 +11,7 @@ type Options struct {
 	endDate      string
 	outputCSV    bool
 	layout       LayoutType
+	sortAmount   bool
 }
 
 type LayoutType string
@@ -61,6 +62,11 @@ func (o Options) WithLayout(layout LayoutType) Options {
 	return o
 }
 
+func (o Options) WithSortAmount() Options {
+	o.sortAmount = true
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -86,6 +92,10 @@ func (o Options) Build() []string {
 
 	if o.layout != "" {
 		options = append(options, "--layout", string(o.layout))
+	}
+
+	if o.sortAmount {
+		options = append(options, "--sort-amount")
 	}
 
 	if o.outputCSV {

@@ -66,6 +66,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"--layout", "bare"},
 		},
+		"with sort amount": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithSortAmount()
+			},
+			expected: []string{"--sort-amount"},
+		},
 	}
 
 	for name, test := range tests {
