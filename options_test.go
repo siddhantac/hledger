@@ -78,6 +78,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"--invert"},
 		},
+		"with period": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithPeriod(hledger.PeriodMonthly)
+			},
+			expected: []string{"--monthly"},
+		},
 	}
 
 	for name, test := range tests {

@@ -13,12 +13,21 @@ type Options struct {
 	layout       LayoutType
 	sortAmount   bool
 	invertAmount bool
+	period       PeriodType
 }
 
-type LayoutType string
+type (
+	LayoutType string
+	PeriodType string
+)
 
 const (
-	LayoutBare LayoutType = "bare"
+	LayoutBare      LayoutType = "bare"
+	PeriodDaily     PeriodType = "--daily"
+	PeriodWeekly    PeriodType = "--weekly"
+	PeriodMonthly   PeriodType = "--monthly"
+	PeriodQuarterly PeriodType = "--quarterly"
+	PeriodYearly    PeriodType = "--yearly"
 )
 
 func NewOptions() Options { return Options{} }
@@ -73,6 +82,11 @@ func (o Options) WithInvertAmount() Options {
 	return o
 }
 
+func (o Options) WithPeriod(period PeriodType) Options {
+	o.period = period
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -106,6 +120,10 @@ func (o Options) Build() []string {
 
 	if o.invertAmount {
 		options = append(options, "--invert")
+	}
+
+	if o.period != "" {
+		options = append(options, string(o.period))
 	}
 
 	if o.outputCSV {
