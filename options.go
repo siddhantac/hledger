@@ -14,7 +14,7 @@ type Options struct {
 	sortAmount   bool
 	invertAmount bool
 	period       PeriodType
-	debug        bool
+	pretty       bool
 }
 
 type (
@@ -33,8 +33,8 @@ const (
 
 func NewOptions() Options { return Options{} }
 
-func (o Options) WithDebug() Options {
-	o.debug = true
+func (o Options) WithPretty() Options {
+	o.pretty = true
 	return o
 }
 
@@ -134,6 +134,10 @@ func (o Options) Build() []string {
 
 	if o.outputCSV {
 		options = append(options, "-O", "csv")
+	}
+
+	if o.pretty {
+		options = append(options, "--pretty")
 	}
 	return options
 }
