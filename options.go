@@ -14,6 +14,7 @@ type Options struct {
 	sortAmount   bool
 	invertAmount bool
 	period       PeriodType
+	debug        bool
 }
 
 type (
@@ -31,6 +32,11 @@ const (
 )
 
 func NewOptions() Options { return Options{} }
+
+func (o Options) WithDebug() Options {
+	o.debug = true
+	return o
+}
 
 func (o Options) WithAccount(account string) Options {
 	o.account = account
