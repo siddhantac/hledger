@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func (h Hledger) execCmd(hledgerCmd string, options Options) (io.Reader, error) {
+func (h Hledger) execCmd(hledgerCmd string, options Options) (io.Reader, *Error) {
 	args := make([]string, 0)
 	args = append(args, hledgerCmd)
 
@@ -21,7 +21,7 @@ func (h Hledger) execCmd(hledgerCmd string, options Options) (io.Reader, error) 
 	cmd := exec.Command(h.hledgerBinary, args...)
 	result, err := cmd.CombinedOutput()
 	if err != nil {
-		return bytes.NewBuffer(result), err
+		return bytes.NewBuffer(result), &Error{cmdArgs: args, err: err}
 	}
 
 	return bytes.NewBuffer(result), nil
