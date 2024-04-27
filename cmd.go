@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io"
 	"os/exec"
+	"strings"
 )
 
 func (h Hledger) execCmd(hledgerCmd string, options Options) (io.Reader, *Error) {
@@ -16,7 +17,9 @@ func (h Hledger) execCmd(hledgerCmd string, options Options) (io.Reader, *Error)
 
 	args = append(args, options.Build()...)
 
-	// log.Printf("running command: %s %s", h.hledgerBinary, strings.Join(args, " "))
+	if h.logger != nil {
+		h.logger.Printf("running command: %s %s", h.hledgerBinary, strings.Join(args, " "))
+	}
 
 	cmd := exec.Command(h.hledgerBinary, args...)
 	result, err := cmd.CombinedOutput()
