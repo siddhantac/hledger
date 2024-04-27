@@ -84,6 +84,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"--monthly"},
 		},
+		"with description": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithDescription("Rent")
+			},
+			expected: []string{"desc:\"Rent\""},
+		},
 	}
 
 	for name, test := range tests {

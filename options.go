@@ -15,6 +15,7 @@ type Options struct {
 	invertAmount bool
 	period       PeriodType
 	pretty       bool
+	description  string
 }
 
 type (
@@ -32,6 +33,11 @@ const (
 )
 
 func NewOptions() Options { return Options{} }
+
+func (o Options) WithDescription(description string) Options {
+	o.description = description
+	return o
+}
 
 func (o Options) WithPretty() Options {
 	o.pretty = true
@@ -138,6 +144,10 @@ func (o Options) Build() []string {
 
 	if o.pretty {
 		options = append(options, "--pretty")
+	}
+
+	if o.description != "" {
+		options = append(options, "desc:\""+o.description+"\"")
 	}
 	return options
 }
