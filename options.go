@@ -138,16 +138,16 @@ func (o Options) Build() []string {
 		options = append(options, string(o.period))
 	}
 
-	if o.outputCSV {
-		options = append(options, "-O", "csv")
-	}
-
 	if o.pretty {
 		options = append(options, "--pretty")
 	}
 
 	if o.description != "" {
 		options = append(options, "desc:\""+o.description+"\"")
+	}
+
+	if o.outputCSV {
+		options = append(options, "-O", "csv")
 	}
 	return options
 }
