@@ -16,6 +16,7 @@ type Options struct {
 	period       PeriodType
 	pretty       bool
 	description  string
+	average      bool
 }
 
 type (
@@ -33,6 +34,11 @@ const (
 )
 
 func NewOptions() Options { return Options{} }
+
+func (o Options) WithAverage() Options {
+	o.average = true
+	return o
+}
 
 func (o Options) WithDescription(description string) Options {
 	o.description = description
@@ -144,6 +150,10 @@ func (o Options) Build() []string {
 
 	if o.description != "" {
 		options = append(options, "desc:\""+o.description+"\"")
+	}
+
+	if o.average {
+		options = append(options, "--average")
 	}
 
 	if o.outputCSV {

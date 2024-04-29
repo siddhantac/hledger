@@ -90,6 +90,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"desc:\"Rent\""},
 		},
+		"with average": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithAverage()
+			},
+			expected: []string{"--average"},
+		},
 	}
 
 	for name, test := range tests {
