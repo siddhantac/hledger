@@ -96,6 +96,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"--average"},
 		},
+		"with tree": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithTree()
+			},
+			expected: []string{"--tree"},
+		},
 	}
 
 	for name, test := range tests {

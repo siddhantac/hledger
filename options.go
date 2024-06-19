@@ -17,6 +17,7 @@ type Options struct {
 	pretty       bool
 	description  string
 	average      bool
+	tree         bool
 }
 
 type (
@@ -105,6 +106,11 @@ func (o Options) WithPeriod(period PeriodType) Options {
 	return o
 }
 
+func (o Options) WithTree() Options {
+	o.tree = true
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -158,6 +164,10 @@ func (o Options) Build() []string {
 
 	if o.outputCSV {
 		options = append(options, "-O", "csv")
+	}
+
+	if o.tree {
+		options = append(options, "--tree")
 	}
 	return options
 }
