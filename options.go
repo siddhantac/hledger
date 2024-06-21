@@ -155,7 +155,7 @@ func (o Options) Build() []string {
 	}
 
 	if o.description != "" {
-		options = append(options, "desc:\""+o.description+"\"")
+		options = append(options, "desc:"+o.description)
 	}
 
 	if o.average {
