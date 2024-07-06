@@ -88,7 +88,7 @@ func TestOptions(t *testing.T) {
 			opts: func() hledger.Options {
 				return hledger.NewOptions().WithDescription("Rent")
 			},
-			expected: []string{"desc:\"Rent\""},
+			expected: []string{"desc:Rent"},
 		},
 		"with average": {
 			opts: func() hledger.Options {
@@ -101,6 +101,18 @@ func TestOptions(t *testing.T) {
 				return hledger.NewOptions().WithTree()
 			},
 			expected: []string{"--tree"},
+		},
+		"with pretty": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithPretty()
+			},
+			expected: []string{"--pretty"},
+		},
+		"with valuation": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithValuation()
+			},
+			expected: []string{"--market"},
 		},
 	}
 

@@ -18,6 +18,7 @@ type Options struct {
 	description  string
 	average      bool
 	tree         bool
+	valuation    bool
 }
 
 type (
@@ -111,6 +112,11 @@ func (o Options) WithTree() Options {
 	return o
 }
 
+func (o Options) WithValuation() Options {
+	o.valuation = true
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -168,6 +174,10 @@ func (o Options) Build() []string {
 
 	if o.tree {
 		options = append(options, "--tree")
+	}
+
+	if o.valuation {
+		options = append(options, "--market")
 	}
 	return options
 }
