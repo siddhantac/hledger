@@ -11,7 +11,7 @@ func TestBalance(t *testing.T) {
 	hl := hledger.New("hledger", "data/hledger.journal")
 
 	opts := hledger.NewOptions().WithAccount("maybank")
-	rd, err := hl.Balance(opts.WithOutputCSV())
+	rd, err := hl.Balance(opts.WithOutputCSV(true))
 	assert.NoError(t, err)
 	records, err := hledger.ParseCSV(rd)
 	assert.NoError(t, err)
@@ -28,7 +28,7 @@ func TestAssets(t *testing.T) {
 	hl := hledger.New("hledger", "data/hledger.journal")
 
 	opts := hledger.NewOptions()
-	rd, err := hl.Assets(opts.WithOutputCSV())
+	rd, err := hl.Assets(opts.WithOutputCSV(true))
 	assert.NoError(t, err)
 	records, err := hledger.ParseCSV(rd)
 	assert.NoError(t, err)

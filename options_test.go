@@ -56,7 +56,7 @@ func TestOptions(t *testing.T) {
 		},
 		"with output csv": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithOutputCSV()
+				return hledger.NewOptions().WithOutputCSV(true)
 			},
 			expected: []string{"-O", "csv"},
 		},
@@ -68,13 +68,13 @@ func TestOptions(t *testing.T) {
 		},
 		"with sort amount": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithSortAmount()
+				return hledger.NewOptions().WithSortAmount(true)
 			},
 			expected: []string{"--sort-amount"},
 		},
 		"with invert amount": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithInvertAmount()
+				return hledger.NewOptions().WithInvertAmount(true)
 			},
 			expected: []string{"--invert"},
 		},
@@ -92,25 +92,25 @@ func TestOptions(t *testing.T) {
 		},
 		"with average": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithAverage()
+				return hledger.NewOptions().WithAverage(true)
 			},
 			expected: []string{"--average"},
 		},
 		"with tree": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithTree()
+				return hledger.NewOptions().WithTree(true)
 			},
 			expected: []string{"--tree"},
 		},
 		"with pretty": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithPretty()
+				return hledger.NewOptions().WithPretty(true)
 			},
 			expected: []string{"--pretty"},
 		},
 		"with valuation": {
 			opts: func() hledger.Options {
-				return hledger.NewOptions().WithValuation()
+				return hledger.NewOptions().WithValuation(true)
 			},
 			expected: []string{"--market"},
 		},

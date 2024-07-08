@@ -47,7 +47,7 @@ func TestBalanceSheet(t *testing.T) {
 func TestBalanceSheetWithTree(t *testing.T) {
 	hl := hledger.New("hledger", "data/hledger.journal")
 
-	opts := hledger.NewOptions().WithTree()
+	opts := hledger.NewOptions().WithTree(true)
 	rd, err := hl.BalanceSheet(opts)
 	assert.NoError(t, err)
 

@@ -11,7 +11,7 @@ func TestRegister(t *testing.T) {
 	hl := hledger.New("hledger", "data/hledger.journal")
 
 	opts := hledger.NewOptions().WithAccount("maybank")
-	rd, err := hl.Register(opts.WithOutputCSV())
+	rd, err := hl.Register(opts.WithOutputCSV(true))
 	assert.NoError(t, err)
 	records, err := hledger.ParseCSV(rd)
 	assert.NoError(t, err)

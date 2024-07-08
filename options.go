@@ -37,8 +37,8 @@ const (
 
 func NewOptions() Options { return Options{} }
 
-func (o Options) WithAverage() Options {
-	o.average = true
+func (o Options) WithAverage(average bool) Options {
+	o.average = average
 	return o
 }
 
@@ -47,8 +47,8 @@ func (o Options) WithDescription(description string) Options {
 	return o
 }
 
-func (o Options) WithPretty() Options {
-	o.pretty = true
+func (o Options) WithPretty(pretty bool) Options {
+	o.pretty = pretty
 	return o
 }
 
@@ -82,8 +82,8 @@ func (o Options) WithEndDate(endDate string) Options {
 	return o
 }
 
-func (o Options) WithOutputCSV() Options {
-	o.outputCSV = true
+func (o Options) WithOutputCSV(outputCSV bool) Options {
+	o.outputCSV = outputCSV
 	return o
 }
 
@@ -92,13 +92,13 @@ func (o Options) WithLayout(layout LayoutType) Options {
 	return o
 }
 
-func (o Options) WithSortAmount() Options {
-	o.sortAmount = true
+func (o Options) WithSortAmount(sortAmount bool) Options {
+	o.sortAmount = sortAmount
 	return o
 }
 
-func (o Options) WithInvertAmount() Options {
-	o.invertAmount = true
+func (o Options) WithInvertAmount(invertAmount bool) Options {
+	o.invertAmount = invertAmount
 	return o
 }
 
@@ -107,13 +107,13 @@ func (o Options) WithPeriod(period PeriodType) Options {
 	return o
 }
 
-func (o Options) WithTree() Options {
-	o.tree = true
+func (o Options) WithTree(tree bool) Options {
+	o.tree = tree
 	return o
 }
 
-func (o Options) WithValuation() Options {
-	o.valuation = true
+func (o Options) WithValuation(valuation bool) Options {
+	o.valuation = valuation
 	return o
 }
 
