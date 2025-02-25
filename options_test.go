@@ -12,6 +12,12 @@ func TestOptions(t *testing.T) {
 		opts     func() hledger.Options
 		expected []string
 	}{
+		"with percent": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithPercent(true)
+			},
+			expected: []string{"-%"},
+		},
 		"with account": {
 			opts: func() hledger.Options {
 				return hledger.NewOptions().WithAccount("dbs")

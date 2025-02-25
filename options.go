@@ -19,6 +19,7 @@ type Options struct {
 	average      bool
 	tree         bool
 	valuation    bool
+	percent      bool
 }
 
 type (
@@ -117,6 +118,11 @@ func (o Options) WithValuation(valuation bool) Options {
 	return o
 }
 
+func (o Options) WithPercent(percent bool) Options {
+	o.percent = percent
+	return o
+}
+
 func (o Options) Build() []string {
 	var options []string
 	if o.account != "" {
@@ -178,6 +184,10 @@ func (o Options) Build() []string {
 
 	if o.valuation {
 		options = append(options, "--market")
+	}
+
+	if o.percent {
+		options = append(options, "-%")
 	}
 	return options
 }
