@@ -120,6 +120,12 @@ func TestOptions(t *testing.T) {
 			},
 			expected: []string{"--market"},
 		},
+		"with budget": {
+			opts: func() hledger.Options {
+				return hledger.NewOptions().WithBudget()
+			},
+			expected: []string{"--budget"},
+		},
 	}
 
 	for name, test := range tests {

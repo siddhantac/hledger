@@ -20,6 +20,7 @@ type Options struct {
 	tree         bool
 	valuation    bool
 	percent      bool
+	budget       bool
 }
 
 type (
@@ -40,6 +41,11 @@ func NewOptions() Options { return Options{} }
 
 func (o Options) WithAverage(average bool) Options {
 	o.average = average
+	return o
+}
+
+func (o Options) WithBudget() Options {
+	o.budget = true
 	return o
 }
 
@@ -189,5 +195,9 @@ func (o Options) Build() []string {
 	if o.percent {
 		options = append(options, "-%")
 	}
+	if o.budget {
+		options = append(options, "--budget")
+	}
+
 	return options
 }
